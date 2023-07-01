@@ -1,8 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect } from "react";
 import styles from "./Map.module.scss";
+//import dotenv from 'dotenv';
 //import logoFlag from "../../assets/isotipo_Mappu_1x1.png";
 
+//dotenv.config();
 declare global {
   interface Window {
     google: any;
@@ -31,7 +33,7 @@ function Map() {
       { name: "Mirutaki", lat: -34.5776241, lng: -58.4325179, instagram: "https://www.instagram.com/cris.araozz/" },
       { name: "Montañeses Restaurante", lat: -34.5757392, lng: -58.4632838, instagram: "https://www.instagram.com/cris.araozz/"},
     ];
-
+  
     // Función para crear los marcadores en el mapa
     function setMarkers(map: google.maps.Map) {
       const image = {
@@ -99,7 +101,8 @@ function Map() {
 
       // Carga asíncrona de la API de Google Maps
       const script = document.createElement("script");
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDtFHRx9vk1O6bGH2G8J-aR16qBdYPV41k&callback=initMap`;
+      //script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&callback=initMap`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_APP_GOOGLE_MAPS_API_KEY}&callback=initMap`;
       script.defer = true;
       script.async = true;
 
