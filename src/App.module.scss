@@ -1,0 +1,23 @@
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%; // Asegúrate de que .app ocupe todo el ancho de la pantalla.
+  box-sizing: border-box; // Esto hará que el padding y el border no aumenten el tamaño total de .app.
+}
+
+.navBar {
+  flex: 0 0 auto; // Esto significa que el NavBar no crecerá ni se encogerá, simplemente ocupará el espacio que necesita.
+}
+
+.bodyContent {
+  flex: 1 1 auto; // Esto significa que bodyContent ocupará todo el espacio restante.
+}
