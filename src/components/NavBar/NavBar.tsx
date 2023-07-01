@@ -17,7 +17,7 @@ function NavBar() {
         ☰
       </button>
       <ul className={`${styles.navList} ${isOpen ? styles.open : ''}`}>
-        <li><Link to="/map" onClick={() => setIsOpen(false)}>Lugares</Link></li>
+        <li><Link to="/" onClick={() => setIsOpen(false)}>Lugares</Link></li>
         <li><Link to="/add" onClick={() => setIsOpen(false)}>Agregar Ubicación</Link></li>
       </ul>
     </nav>

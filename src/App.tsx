@@ -13,9 +13,9 @@ function App() {
       </div>
       <div className={styles.bodyContent}>
         <Routes>
-          <Route path="/map" element={<Map />} />
+          <Route path="/" element={<Map />} />
           <Route path="/add" element={<AddLocation />} />
-          <Route path="/" element={<Navigate to="/map" />} />
+          <Route path="/" element={<Navigate to="/" />} />
         </Routes>
       </div>
     </div>
