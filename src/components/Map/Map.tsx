@@ -5,10 +5,6 @@ import flagJapon from "../../assets/japon1.png";
 import flagKorea from "../../assets/korea1.png";
 import flagChina from "../../assets/china1.png";
 
-//import dotenv from 'dotenv';
-//import logoFlag from "../../assets/isotipo_Mappu_1x1.png";
-
-//dotenv.config();
 declare global {
   interface Window {
     google: any;
@@ -42,6 +38,7 @@ function Map() {
     /* */
     function setMarkers(map: google.maps.Map) {
       
+      /*
       const image = {
         url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
         //url: logoFlag,
@@ -49,7 +46,7 @@ function Map() {
         origin: new window.google.maps.Point(0, 0),
         anchor: new window.google.maps.Point(0, 32),
       };
-      
+      */
       const shape = {
         coords: [1, 1, 1, 20, 18, 20, 18, 1],
         type: "poly",
@@ -59,7 +56,8 @@ function Map() {
         const marker = new window.google.maps.Marker({
           position: { lat: location.lat, lng: location.lng },
           map,
-          icon: image,
+          //icon: image,
+          icon: "http://maps.google.com/mapfiles/ms/micons/red-dot.png",
           shape: shape,
           title: location.name,
           zIndex: 4,
