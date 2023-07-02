@@ -16,17 +16,31 @@ import { useState } from "react";
 import flagJapon from "../../assets/japon1.png";
 import flagKorea from "../../assets/korea2.png";
 import flagChina from "../../assets/china1.png";
+
 interface NavBarProps {
-  onLocationFilter: (location: string) => void;
+  onLocationFilter: (location: string | null) => void;
 }
 
 function NavBar({ onLocationFilter }: NavBarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const flagMap: { [key: string]: string | null } = {
+    "Ver todos": null,
+    Japon: flagJapon,
+    Korea: flagKorea,
+    China: flagChina,
+  };
+  // Define selectedFilter so that icon can be a string or null.
+  const [selectedFilter, setSelectedFilter] = useState<{
+    label: string;
+    icon: string | null;
+  }>({ label: "Filtro por país", icon: null });
 
-  const handleLocationFilter = (location: string) => {
+  const handleLocationFilter = (location: string | null) => {
+    setSelectedFilter({ label: location ?? "Filtro por país", icon: flagMap[location ?? ""] });
     onLocationFilter(location);
     setIsOpen(false);
   };
+  
 
   return (
     <nav className={styles.navBar}>
@@ -44,12 +58,24 @@ function NavBar({ onLocationFilter }: NavBarProps) {
       </button>
       <ul className={`${styles.navList} ${isOpen ? styles.open : ""}`}>
         <Menu>
-          <MenuButton as={Link} _hover={{ textDecoration: "underline", textDecorationColor: "red" }}>
-            Filtro por país
-            <Box as={ChevronDownIcon} ml="2" />
+          <MenuButton
+            as={Link}
+            _hover={{ textDecoration: "underline", textDecorationColor: "red" }}
+          >
+            <Box width="150px" display="flex" alignItems="center">
+              {selectedFilter.icon && (
+                <Image
+                  boxSize="20px"
+                  src={selectedFilter.icon}
+                  alt={`Flag ${selectedFilter.label}`}
+                />
+              )}
+              <Text ml={2}>{selectedFilter.label}</Text>
+              <Box as={ChevronDownIcon} ml="2" />
+            </Box>
           </MenuButton>
           <MenuList>
-            <MenuItem onClick={() => handleLocationFilter("all")}>
+            <MenuItem onClick={() => handleLocationFilter("Ver todos")}>
               <Flex align="center">
                 <Text>Ver todos</Text>
               </Flex>

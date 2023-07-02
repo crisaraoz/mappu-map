@@ -16,7 +16,7 @@ interface Location {
   color: string;
 }
 interface MapProps {
-  selectedLocation: string;
+  selectedLocation: string | null;
 }
 declare global {
   interface Window {
@@ -41,11 +41,13 @@ function Map({ selectedLocation }: MapProps) {
 
     const locations: Location[] = [
       { name: "Mappu dev", country: "Korea",lat: -34.608230271063675, lng: -58.450628311087975, instagram: "https://www.instagram.com/cris.araozz/", flag: flagKorea, color: "blue-dot" },
-      { name: "Barrio Chino", country: "Korea",lat: -34.5775, lng: -58.438, instagram: "https://www.instagram.com/cris.araozz/", flag: flagKorea, color: "blue-dot" },
+      { name: "KBBQ Parrilla", country: "Korea",lat: -34.5930797, lng: -58.4553429, instagram: "https://www.instagram.com/cris.araozz/", flag: flagKorea, color: "blue-dot" },
+      { name: "Barrio Chino", country: "China",lat: -34.5775, lng: -58.438, instagram: "https://www.instagram.com/cris.araozz/", flag: flagKorea, color: "green-dot" },
       { name: "Mirutaki", country: "Japon",lat: -34.5776241, lng: -58.4325179, instagram: "https://www.instagram.com/cris.araozz/", flag: flagJapon, color: "red-dot" },
+      { name: "Nueva Casa Japonesa", country: "Japon",lat: -34.6218913, lng: -58.3989718, instagram: "https://www.instagram.com/cris.araozz/", flag: flagJapon, color: "red-dot" },
       { name: "Montañeses Restaurante", country: "China",lat: -34.5757392, lng: -58.4632838, instagram: "https://www.instagram.com/cris.araozz/", flag: flagChina, color: "green-dot" },
     ];
-
+    
     function setMarkers(map: google.maps.Map) {
       const shape = {
         coords: [1, 1, 1, 20, 18, 20, 18, 1],
@@ -53,7 +55,7 @@ function Map({ selectedLocation }: MapProps) {
       };
 
       locations.forEach((location) => {
-        if (selectedLocation === 'all' || location.country.toLowerCase() === selectedLocation.toLowerCase()) {
+        if (selectedLocation === null || selectedLocation === 'all' || location.country.toLowerCase() === selectedLocation.toLowerCase()) {
           let iconUrl;
 
           switch (location.color) {
@@ -91,7 +93,7 @@ function Map({ selectedLocation }: MapProps) {
                       <div>
                         <h3>${location.name}</h3>
                         <p>${results[0].formatted_address}</p>
-                        <a href="${location.instagram}" target="_blank">Ir a Mappu Reseña</a>
+                        <a href="${location.instagram}" target="_blank" style="color: #ff1100">Ir a Mappu Reseña</a>
                       </div>
                     `;
 

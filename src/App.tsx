@@ -8,8 +8,8 @@ import { useState } from 'react';
 function App() {
   const [selectedLocation, setSelectedLocation] = useState('all');
 
-  const handleLocationFilter = (location: string) => {
-    setSelectedLocation(location);
+  const handleLocationFilter = (location: string | null) => {
+    setSelectedLocation(location || 'all');
   };
 
   return (
