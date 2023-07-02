@@ -35,7 +35,11 @@
   list-style: none;
 
   a {
-    color: red;
+    color: rgb(22, 21, 21);
+    text-decoration: none;
+    &:hover {
+      color: red; 
+    }
   }
 }
 
